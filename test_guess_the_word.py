@@ -1,3 +1,7 @@
+# Mia Soard
+# CIS256 Fall 2026
+# Programming Assignment 4
+
 # pytest tests for guess_the_word.py
 
 from guess_the_word import (

@@ -1,3 +1,7 @@
+# Mia Soard
+# CIS256 Fall 2026
+# Programming Assignment 4
+
 # Word guessing game.
 # Guess the word one letter at a time
 
