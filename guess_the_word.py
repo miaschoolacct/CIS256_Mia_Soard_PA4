@@ -36,3 +36,41 @@ def process_guess(word, guessed_letters, guess):
 def is_word_guessed(word, guessed_letters):
     return all(letter in guessed_letters for letter in word)
 
+# Run one round of the game
+def play_game(word=None):
+    if word is None:
+        word = choose_word()
+
+    # Letters guessed so far
+    guessed_letters = set()
+    # Incorrect guesses left
+    attempts_left = MAX_ATTEMPTS
+
+    print("**~~ Word Guessing Game ~~**")
+
+    # Keep playing until word is solved or attempts run out
+    while attempts_left > 0 and not is_word_guessed(word, guessed_letters):
+        print("\nWord:", display_word(word, guessed_letters))
+        print("Attempts left:", attempts_left)
+        print("Guessed so far:", " ".join(sorted(guessed_letters)) or "none")
+
+        result = process_guess(word, guessed_letters, input("Guess a letter: "))
+
+        if result == "invalid":
+            print("Please enter a single letter.")
+        elif result == "repeat":
+            print("Letter was already guessed.")
+        elif result == "correct":
+            print("Good guess!")
+        else: 
+            attempts_left -= 1
+            print("Sorry, that letter was not in the word.")
+
+    # Show the outcome
+    if is_word_guessed(word, guessed_letters):
+        print(f"Congratulations! You guessed the word: {word}")
+    else:
+        print(f"\nSorry, out of attempts! The word was: {word}")
+
+if __name__ == "__main__":
+    play_game()
